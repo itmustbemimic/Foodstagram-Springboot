@@ -16,9 +16,9 @@ import java.io.InputStream;
 @Controller
 public class ImageController {
 
-    @GetMapping(value = "/img/{img_path}", produces = MediaType.IMAGE_PNG_VALUE)
-    public ResponseEntity<byte[]> getImage(@PathVariable("img_path") String img_path) throws IOException {
-        InputStream in = new FileInputStream(img_path);
+    @GetMapping(value = "/{img_filename}", produces = MediaType.IMAGE_PNG_VALUE)
+    public ResponseEntity<byte[]> getImage(@PathVariable("img_filename") String img_filename) throws IOException {
+        InputStream in = new FileInputStream("/img/" + img_filename);
         byte[] imageByteArray = IOUtils.toByteArray(in);
         in.close();
 
