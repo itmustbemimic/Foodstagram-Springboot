@@ -18,6 +18,7 @@ public class Article {
     private Long id;
 
     private String username;
+    private String text;
     private double rating;
     private double calorie;
     private String img_path;

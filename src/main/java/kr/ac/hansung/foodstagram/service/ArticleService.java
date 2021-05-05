@@ -20,4 +20,23 @@ public class ArticleService {
 
         return articles;
     }
+
+    public Article createArticle(
+            String username,
+            double rating,
+            double calorie,
+            String img_path,
+            Long restaurant_id) {
+
+//        Article article = new Article();
+//        article.setUsername(username);
+//        article.setRating(rating);
+//        article.setCalorie(calorie);
+//        article.setImg_path(img_path);
+//        article.setRestaurant_id(restaurant_id);
+//
+//        articleRepository.save(article);
+
+        return null;
+    }
 }
