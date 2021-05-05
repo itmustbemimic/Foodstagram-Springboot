@@ -32,15 +32,9 @@ public class ArticleController {
 
     @PostMapping("/mainfeed")
     public ResponseEntity<Article> createFeed(@RequestBody Article request) {
-        Article article = articleService.createArticle(
-                request.getUsername(),
-                request.getRating(),
-                request.getCalorie(),
-                request.getImg_path(),
-                request.getRestaurant_id()
-                );
+        Article article = articleService.createArticle(request);
 
-        return new ResponseEntity<Article>(article, HttpStatus.CREATED);
+        return new ResponseEntity<>(article, HttpStatus.CREATED);
     }
 
 

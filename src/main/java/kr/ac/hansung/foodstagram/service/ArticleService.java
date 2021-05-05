@@ -21,22 +21,8 @@ public class ArticleService {
         return articles;
     }
 
-    public Article createArticle(
-            String username,
-            double rating,
-            double calorie,
-            String img_path,
-            Long restaurant_id) {
+    public Article createArticle(Article article) {
 
-//        Article article = new Article();
-//        article.setUsername(username);
-//        article.setRating(rating);
-//        article.setCalorie(calorie);
-//        article.setImg_path(img_path);
-//        article.setRestaurant_id(restaurant_id);
-//
-//        articleRepository.save(article);
-
-        return null;
+        return articleRepository.save(article);
     }
 }

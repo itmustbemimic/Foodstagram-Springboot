@@ -1,20 +1,20 @@
 package kr.ac.hansung.foodstagram.entity;
 
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 
 @Data
 @AllArgsConstructor
 @Entity(name = "articles")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Article {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String username;
@@ -23,5 +23,8 @@ public class Article {
     private double calorie;
     private String img_path;
     private Long restaurant_id;
-    private String date;
+
+    @CreationTimestamp
+    @Temporal(TemporalType.DATE)
+    private Date date;
 }
