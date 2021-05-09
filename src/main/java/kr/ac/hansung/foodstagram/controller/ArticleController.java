@@ -7,11 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class ArticleController {
@@ -20,7 +19,7 @@ public class ArticleController {
     private ArticleService articleService;
 
     @GetMapping("/mainfeed")
-    public ResponseEntity<?> retrieveAllAricles(){
+    public ResponseEntity<?> retrieveAllArticles(){
         final List<Article> articles = articleService.getAllArticles();
 
         if (articles.isEmpty())
@@ -35,6 +34,21 @@ public class ArticleController {
         Article article = articleService.createArticle(request);
 
         return new ResponseEntity<>(article, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/mainfeed/{username}")
+    public ResponseEntity<?> userProfile(@PathVariable String username){
+        List<Article> articles = articleService.userProfile(username);
+
+        return new ResponseEntity<>(articles, HttpStatus.OK);
+
+    }
+
+    @DeleteMapping("/mainfeed/{article_id}")
+    public ResponseEntity<?> deleteArticle(@PathVariable Long article_id) {
+        articleService.deleteArticle(article_id);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 

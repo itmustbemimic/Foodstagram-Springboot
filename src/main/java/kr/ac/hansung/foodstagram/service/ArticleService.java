@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ArticleService {
@@ -22,7 +23,14 @@ public class ArticleService {
     }
 
     public Article createArticle(Article article) {
-
         return articleRepository.save(article);
+    }
+
+    public List<Article> userProfile(String username) {
+        return articleRepository.findByUsername(username);
+    }
+
+    public void deleteArticle(Long id) {
+        articleRepository.deleteById(id);
     }
 }
