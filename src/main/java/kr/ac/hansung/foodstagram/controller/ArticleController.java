@@ -51,5 +51,12 @@ public class ArticleController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @GetMapping("/search/{keyword}")
+    public ResponseEntity<?> searchContaining(@PathVariable String keyword) {
+        List<Article> articles = articleService.searchArticle(keyword);
+
+        return new ResponseEntity<>(articles, HttpStatus.OK);
+    }
+
 
 }

@@ -33,4 +33,10 @@ public class ArticleService {
     public void deleteArticle(Long id) {
         articleRepository.deleteById(id);
     }
+
+    public List<Article> searchArticle(String keyword) {
+        return articleRepository.findByTextContaining(keyword);
+    }
+
+
 }
