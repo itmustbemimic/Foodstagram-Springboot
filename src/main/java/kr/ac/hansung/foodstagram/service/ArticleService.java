@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ArticleService {
@@ -38,5 +37,8 @@ public class ArticleService {
         return articleRepository.findByTextContaining(keyword);
     }
 
+    public Article findById(Long id) {
+        return articleRepository.findById(id).get();
+    }
 
 }

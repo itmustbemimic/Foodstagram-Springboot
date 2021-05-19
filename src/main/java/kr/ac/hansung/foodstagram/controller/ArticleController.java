@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class ArticleController {
@@ -19,7 +18,7 @@ public class ArticleController {
     private ArticleService articleService;
 
     @GetMapping("/mainfeed")
-    public ResponseEntity<?> retrieveAllArticles(){
+    public ResponseEntity<?> retrieveAllArticles() {
         final List<Article> articles = articleService.getAllArticles();
 
         if (articles.isEmpty())
@@ -37,7 +36,7 @@ public class ArticleController {
     }
 
     @GetMapping("/mainfeed/{username}")
-    public ResponseEntity<?> userProfile(@PathVariable String username){
+    public ResponseEntity<?> userProfile(@PathVariable String username) {
         List<Article> articles = articleService.userProfile(username);
 
         return new ResponseEntity<>(articles, HttpStatus.OK);
@@ -56,6 +55,19 @@ public class ArticleController {
         List<Article> articles = articleService.searchArticle(keyword);
 
         return new ResponseEntity<>(articles, HttpStatus.OK);
+    }
+
+    @GetMapping("/mainfeed/edit/{id}")
+    public ResponseEntity<?> editArticle(@PathVariable Long id) {
+        Article article = articleService.findById(id);
+
+        System.out.println("******" + article);
+
+        if (article == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<>(article, HttpStatus.OK);
     }
 
 

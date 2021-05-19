@@ -10,9 +10,9 @@ import java.util.List;
 public interface ArticleRepository extends JpaRepository<Article, Long> {
 
 
-    public List<Article> findByUsername(String username);
+    List<Article> findByUsername(String username);
 
-    public List<Article> findByTextContaining(String keyword);
+    List<Article> findByTextContaining(String keyword);
 
 
 

@@ -1,6 +1,8 @@
 package kr.ac.hansung.foodstagram.controller;
 
+import kr.ac.hansung.foodstagram.service.ImageService;
 import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,9 @@ import java.io.InputStream;
 @Controller
 public class ImageController {
 
+    @Autowired
+    private ImageService imageService;
+
 
 
     @GetMapping(value = "/img/{img_filename}", produces = MediaType.IMAGE_PNG_VALUE)
@@ -35,21 +40,30 @@ public class ImageController {
 
 
     @PostMapping("/img")
-    public ResponseEntity<?> uploadImage(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<?> uploadImage(@RequestParam("file") MultipartFile file) throws IOException {
+
+        String foodName;
 
         if (file.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT); //이거 맞음?
 
+        //Linux
         File dest = new File("/img/" + file.getOriginalFilename());
+
+        //Windows
+        //File dest = new File("C:\\img\\" + file.getOriginalFilename());
+
         try {
             file.transferTo(dest);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        System.out.println(dest.getPath().toString());
+        System.out.println("IMG Path = " + dest.getPath());
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        foodName = imageService.imgTensor(dest);
+
+        return new ResponseEntity<>(foodName, HttpStatus.OK);
 
     }
 
