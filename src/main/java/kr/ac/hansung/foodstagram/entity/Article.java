@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 
+
 @Data
 @AllArgsConstructor
 @Entity(name = "articles")
@@ -22,9 +23,14 @@ public class Article {
     private double rating;
     private double calorie;
     private String img_path;
-    private Long restaurant_id;
 
     @CreationTimestamp
     @Temporal(TemporalType.DATE)
     private Date date;
+
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
+
+
 }
