@@ -16,10 +16,9 @@ public class ImageService {
 
 
     public String imgTensor(File imgFile) {
-//        Graph graph = new Graph();
-//        Session session = SavedModelBundle.load("static/train.csv").session();
+        Graph graph = new Graph();
 
-        //session.runner().feed().fetch().run().get().copyTo();
+
 
         return "caviar";
     }
