@@ -37,7 +37,7 @@ public class ImageController {
 
 
     @PostMapping("/img")
-    public ResponseEntity<?> uploadImage(@RequestPart("image") MultipartFile file) throws IOException {
+    public ResponseEntity<?> uploadImage(@RequestPart("imageFile") MultipartFile file) throws IOException {
 
         String foodName;
 
