@@ -24,6 +24,7 @@ public class Article {
     private double calorie;
     private String img_path;
 
+
     @CreationTimestamp
     @Temporal(TemporalType.DATE)
     private Date date;

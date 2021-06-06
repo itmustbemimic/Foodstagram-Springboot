@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 
 @Controller
@@ -70,6 +71,12 @@ public class ArticleController {
         return new ResponseEntity<>(article, HttpStatus.OK);
     }
 
+    @GetMapping("/calendar/{date}")
+    public ResponseEntity<?> getDate(@PathVariable String date) throws ParseException {
+        List<Article> articles = articleService.findByDate(date);
 
+        return ResponseEntity.ok(articles);
+
+    }
 
 }

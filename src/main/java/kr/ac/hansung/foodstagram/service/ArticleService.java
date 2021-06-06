@@ -5,7 +5,11 @@ import kr.ac.hansung.foodstagram.entity.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -41,6 +45,12 @@ public class ArticleService {
         return articleRepository.findById(id).get();
     }
 
+    public List<Article> findByDate(String strDate) throws ParseException {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = dateFormat.parse(strDate);
+
+        return articleRepository.findByDate(date);
+    }
 
 
 }
