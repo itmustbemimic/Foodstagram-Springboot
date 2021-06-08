@@ -79,4 +79,18 @@ public class ArticleController {
 
     }
 
+    @GetMapping("/avg/calorie/{username}")
+    public ResponseEntity<?> userAvgCalorie(@PathVariable String username) {
+        double avg = articleService.getUserAvg(username);
+
+        return ResponseEntity.ok(avg);
+    }
+
+    @GetMapping("/sum/calorie/{username}")
+    public ResponseEntity<?> userSumCalorie(@PathVariable String username) {
+        double sum = articleService.getUserSum(username);
+
+        return ResponseEntity.ok(sum);
+    }
+
 }

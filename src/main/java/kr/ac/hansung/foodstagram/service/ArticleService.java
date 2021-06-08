@@ -3,6 +3,7 @@ package kr.ac.hansung.foodstagram.service;
 import kr.ac.hansung.foodstagram.dao.ArticleRepository;
 import kr.ac.hansung.foodstagram.entity.Article;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.text.DateFormat;
@@ -20,7 +21,7 @@ public class ArticleService {
 
     public List<Article> getAllArticles() {
         List<Article> articles = new ArrayList<>();
-        articleRepository.findAll().forEach(e -> articles.add(e));
+        articles = articleRepository.findAll(Sort.by(Sort.Direction.DESC, "date"));
 
         return articles;
     }
@@ -51,6 +52,32 @@ public class ArticleService {
 
         return articleRepository.findByDate(date);
     }
+
+    public double getUserAvg(String username) {
+        List<Article> articles = articleRepository.findByUsername(username);
+        double avg = 0;
+
+        for (int i = 0; i < articles.size(); i++) {
+            avg += articles.get(i).getCalorie();
+            avg = avg / (i + 1);
+        }
+
+        return avg;
+    }
+
+    public double getUserSum(String username) {
+        List<Article> articles = articleRepository.findByUsername(username);
+        double sum = 0;
+
+        for (int i = 0; i < articles.size(); i++) {
+            sum += articles.get(i).getCalorie();
+
+        }
+
+        return sum;
+    }
+
+
 
 
 }
