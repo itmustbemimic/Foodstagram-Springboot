@@ -1,6 +1,7 @@
 package kr.ac.hansung.foodstagram.service;
 
 import kr.ac.hansung.foodstagram.dao.RestaurantRepository;
+import kr.ac.hansung.foodstagram.entity.Article;
 import kr.ac.hansung.foodstagram.entity.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,10 @@ public class RestaurantService {
 
     @Autowired
     private RestaurantRepository restaurantRepository;
+
+    public Restaurant createRestaurant(Restaurant restaurant) {
+        return restaurantRepository.save(restaurant);
+    }
 
     public List<Restaurant> getAllRestaurant() {
         List<Restaurant> restaurantList = new ArrayList<>();
