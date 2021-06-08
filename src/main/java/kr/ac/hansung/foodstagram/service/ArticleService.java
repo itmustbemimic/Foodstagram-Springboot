@@ -62,7 +62,7 @@ public class ArticleService {
             avg += articles.get(i).getCalorie();
 
         }
-        avg = avg / (i + 1);
+        avg = avg / i;
         return avg;
     }
 
