@@ -56,12 +56,13 @@ public class ArticleService {
     public double getUserAvg(String username) {
         List<Article> articles = articleRepository.findByUsername(username);
         double avg = 0;
+        int i;
 
-        for (int i = 0; i < articles.size(); i++) {
+        for (i = 0; i < articles.size(); i++) {
             avg += articles.get(i).getCalorie();
-            avg = avg / (i + 1);
-        }
 
+        }
+        avg = avg / (i + 1);
         return avg;
     }
 
@@ -76,8 +77,6 @@ public class ArticleService {
 
         return sum;
     }
-
-
 
 
 }
