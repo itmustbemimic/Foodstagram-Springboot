@@ -19,6 +19,8 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 
     List<Article> findByDate(Date date);
 
+    List<Article> findByDateAndUsername(Date date, String username);
+
 
 
 }

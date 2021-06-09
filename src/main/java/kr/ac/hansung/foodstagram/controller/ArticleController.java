@@ -1,8 +1,11 @@
 package kr.ac.hansung.foodstagram.controller;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.sun.istack.NotNull;
 import kr.ac.hansung.foodstagram.entity.Article;
 import kr.ac.hansung.foodstagram.service.ArticleService;
+import org.apache.tomcat.util.json.JSONParser;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -79,11 +82,23 @@ public class ArticleController {
 
     }
 
+    @GetMapping("calendar/sum/{username}/{date}")
+    public ResponseEntity<?> getDateCalorieSum(@PathVariable String date, @PathVariable String username) throws ParseException {
+        double sum = articleService.getCalorieSumByDate(username, date);
+
+        return ResponseEntity.ok(sum);
+
+    }
+
     @GetMapping("/avg/calorie/{username}")
     public ResponseEntity<?> userAvgCalorie(@PathVariable String username) {
         double avg = articleService.getUserAvg(username);
 
-        return ResponseEntity.ok(avg);
+        String str = "{ \"avg\" : " + avg + " }";
+
+
+
+        return ResponseEntity.ok(str);
     }
 
     @GetMapping("/sum/calorie/{username}")

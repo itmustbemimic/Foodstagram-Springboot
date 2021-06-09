@@ -53,6 +53,20 @@ public class ArticleService {
         return articleRepository.findByDate(date);
     }
 
+    public double getCalorieSumByDate(String username, String strDate) throws ParseException {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = dateFormat.parse(strDate);
+        List<Article> articles = articleRepository.findByDateAndUsername(date, username);
+
+        double sum = 0;
+
+        for (int i = 0; i < articles.size(); i++) {
+            sum += articles.get(i).getCalorie();
+        }
+
+        return sum;
+    }
+
     public double getUserAvg(String username) {
         List<Article> articles = articleRepository.findByUsername(username);
         double avg = 0;
@@ -60,7 +74,6 @@ public class ArticleService {
 
         for (i = 0; i < articles.size(); i++) {
             avg += articles.get(i).getCalorie();
-
         }
         avg = avg / i;
         return avg;
@@ -72,7 +85,6 @@ public class ArticleService {
 
         for (int i = 0; i < articles.size(); i++) {
             sum += articles.get(i).getCalorie();
-
         }
 
         return sum;
