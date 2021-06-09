@@ -1,11 +1,7 @@
 package kr.ac.hansung.foodstagram.controller;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import com.sun.istack.NotNull;
 import kr.ac.hansung.foodstagram.entity.Article;
 import kr.ac.hansung.foodstagram.service.ArticleService;
-import org.apache.tomcat.util.json.JSONParser;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
