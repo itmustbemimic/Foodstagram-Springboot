@@ -46,11 +46,11 @@ public class ArticleService {
         return articleRepository.findById(id).get();
     }
 
-    public List<Article> findByDate(String strDate) throws ParseException {
+    public List<Article> findByDateAndUsername(String strDate, String username) throws ParseException {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = dateFormat.parse(strDate);
 
-        return articleRepository.findByDate(date);
+        return articleRepository.findByDateAndUsername(date, username);
     }
 
     public double getCalorieSumByDate(String username, String strDate) throws ParseException {

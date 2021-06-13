@@ -70,9 +70,9 @@ public class ArticleController {
         return new ResponseEntity<>(article, HttpStatus.OK);
     }
 
-    @GetMapping("/calendar/{date}")
-    public ResponseEntity<?> getDate(@PathVariable String date) throws ParseException {
-        List<Article> articles = articleService.findByDate(date);
+    @GetMapping("/calendar/{username}/{date}")
+    public ResponseEntity<?> getDate(@PathVariable String date, @PathVariable String username) throws ParseException {
+        List<Article> articles = articleService.findByDateAndUsername(date, username);
 
         return ResponseEntity.ok(articles);
 
