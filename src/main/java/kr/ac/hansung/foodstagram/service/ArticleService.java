@@ -21,7 +21,7 @@ public class ArticleService {
 
     public List<Article> getAllArticles() {
         List<Article> articles = new ArrayList<>();
-        articles = articleRepository.findAll(Sort.by(Sort.Direction.DESC, "date"));
+        articles = articleRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
 
         return articles;
     }
